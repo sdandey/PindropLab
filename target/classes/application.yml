@@ -1,0 +1,27 @@
+server:
+  port: 8080
+  tomcat:
+    accesslog:
+      directory: /opt/app/logs
+      enabled: true
+      prefix: access_log
+      suffix: .log
+    basedir: /opt/servers/tomcat
+
+logging:
+  file: /opt/app/logs/phone-fraud-api.log
+  level:
+    org.springframework.web: error
+    com.vimarsana: debug
+  pattern:
+    console: "%d{yyyy-mm-dd hh:mm:ss} - %msg%n"
+    file: "%d{yyyy-mm-dd hh:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+
+
+
+#spring:
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/user?usessl=false
+#    username: sdandey
+#    password: sdandey
