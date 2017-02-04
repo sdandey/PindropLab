@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,18 +18,19 @@ import java.util.List;
 public class CSVPhoneFraudRepository {
 
     public static final String LIMITER = ",";
+    private static final String DATA_FILE = "1800_notes.csv";
 
     public  HashMap<String, ForumTopic> readCsvFile() {
 
 
-        String csvFile = "/Users/santoshdandey/Documents/data/PhoneFraudApi/src/main/resources/1800_notes.csv";
+
         String line = "";
 
 
         HashMap<String,ForumTopic> forumTopicHashMap = new HashMap<>();
         ForumTopic forumTopic = null;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/" + DATA_FILE)))) {
             while ((line = br.readLine()) != null) {
                 forumTopic = new ForumTopic(line);
                 forumTopicHashMap.put(forumTopic.getTopicName(), forumTopic);
